@@ -1,0 +1,10 @@
+<li
+  [id]='user.id'
+  (click)="showChat()"
+  class="_active">
+  <img class="usersListIcon"
+       [src]='user.imagePath'/>
+  <span class='user-row'>{{ user.name}}
+   <span class='badge' *ngIf="isNotify">1</span>
+  </span>
+</li>

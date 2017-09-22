@@ -1,0 +1,14 @@
+<div
+  [ngClass]="{'messageItem': message.senderId == chatService.currentChatPerson.id,
+              'messageItemSecond' : message.senderId != chatService.currentChatPerson.id }">
+  <div class="messageUser">
+    <i class="usersListIcon">
+      <img class="messageIcon" [src]="message.senderImagePath">
+    </i>
+    <div class="userName">{{ message.senderName}}</div>
+  </div>
+  <div class="messageText">
+    <div>{{ message.text }}</div>
+    <div class="messageDate">{{ message.timeStamp | date:'medium' }}</div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="center">
+  <h2 class="text">{{chatService.owner.name}}</h2>
+</div>
+<div class="wrapper">
+  <article class="main">
+    <div class="_title">
+      <div class="container chat-header">
+        <h1 id="ownerTag">
+          <span id="apponent">{{chatService.currentChatPerson.name}}</span>
+        </h1>
+      </div>
+    </div>
+    <div class="container">
+      <fieldset id="chat" class="chat">
+        <div id="messages" class="messages" #scrollMessage>
+          <div class="results-block">
+            <table id="msgTable" *ngFor="let message of chatService.messages" #tableChatId>
+              <app-message
+                [message]=message
+              ></app-message>
+            </table>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="message">
+      <div>
+        <textarea autosize id="message" class="message-input" type="text" maxlength="255"
+                  placeholder=" Сообщение...." #messageInput (keydown)="handleKeyEvents($event)"></textarea>
+        <button id="send" (click)="sendMessage(messageInput.value)">Отправить</button>
+      </div>
+    </div>
+  </article>
+  <aside class="aside">
+    <div class="container">
+      <h2>Диалоги</h2>
+    </div>
+    <ul id="users" class="_users" *ngFor="let user of chatService.activeUsers">
+      <app-user [user]="user"></app-user>
+    </ul>
+  </aside>
+</div>

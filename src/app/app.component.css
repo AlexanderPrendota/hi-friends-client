@@ -1,0 +1,38 @@
+.login {
+  border-radius: 4px;
+  background-color: #2aafdd;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 300px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.login span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.login span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.login:hover span {
+  padding-right: 25px;
+}
+
+.login:hover span:after {
+  opacity: 1;
+  right: 0;
+}

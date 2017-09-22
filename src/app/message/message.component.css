@@ -1,0 +1,127 @@
+.messageDate{
+  padding: 3px;
+  color: grey;
+  float: left;
+  font-family: cursive;
+  font-size: 16px;
+}
+.messageIcon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.messageTime {
+  font-size: 14px;
+}
+.messageDate {
+  margin-top: 5px;
+  font-size: 90%;
+  color: #9e9895;
+}
+.messageItem {
+  margin-bottom: 20px;
+  margin-right: 20%;
+  display: flex;
+}
+
+.messageItem._replay {
+  margin-left: 20%;
+  margin-right: 0;
+}
+
+.messageItemSecond {
+  margin-bottom: 20px;
+  margin-left: 390px;
+  display: flex;
+}
+
+.messageItem .messageUser {
+  width: 100px;
+}
+
+.messageItemSecond .messageUser {
+  width: 100px;
+}
+
+.messageUser .usersListIcon {
+  width: 100px;
+  height: 90px;
+  background-size: 80px auto;
+  background-position: 50% 0;
+}
+
+.messageUser .userName {
+  text-align: center;
+  font-weight: 700;
+  font-size: 90%;
+  line-height: 1;
+}
+
+.messageText {
+  position: relative;
+  padding: 20px;
+  min-width: 200px;
+  border-radius: 10px;
+  margin-left: 7px;
+  background: #f5f4f4;
+}
+
+.messageTextCompanion {
+  position: relative;
+  padding: 20px;
+  border-radius: 10px;
+  margin-left: 7px;
+  background: #c3eaec;
+}
+
+.messageItem._replay .messageText {
+  margin-left: 0;
+  margin-right: 7px;
+  background-color: #f0e8e2;
+}
+
+.messageItemSecond._replay .messageText {
+  margin-left: 0;
+  margin-right: 7px;
+  background-color: #f0e8e2;
+}
+
+.messageText:after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  display: block;
+  width: 0;
+  top: 20px;
+  left: -7px;
+  border-width: 10px 7px 10px 0;
+  border-color: transparent #f5f4f4;
+}
+
+.messageTextCompanion:after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  display: block;
+  width: 0;
+  top: 20px;
+  left: -7px;
+  border-width: 10px 7px 10px 0;
+  border-color: transparent #c3eaec;;
+}
+
+.messageItem._replay .messageText:after {
+  left: auto;
+  right: -7px;
+  border-width: 10px 0 10px 7px;
+  border-color: transparent #f0e8e2;
+}
+
+.messageItemSecond._replay .messageText:after {
+  left: auto;
+  right: -7px;
+  border-width: 10px 0 10px 7px;
+  border-color: transparent #f0e8e2;
+}
