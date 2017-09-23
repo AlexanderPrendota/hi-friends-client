@@ -62,10 +62,13 @@
 .messageText {
   position: relative;
   padding: 20px;
-  min-width: 200px;
+  max-width: 200px;
   border-radius: 10px;
   margin-left: 7px;
   background: #f5f4f4;
+}
+.break-text{
+  word-wrap: break-word;
 }
 
 .messageTextCompanion {

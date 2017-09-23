@@ -6,22 +6,21 @@ table, tbody, tfoot, fieldset, textarea, thead, tr, th, td {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
 }
-#google-signin-button{
+
+#google-signin-button {
   margin-left: 48%;
 }
+
 body {
   min-width: 320px;
   height: 100%;
 
   color: #504945;
   background-color: #f7f2ef;
-
   font-family: 'Open Sans', Arial, sans-serif;
   font-size: 16px;
-  line-height: 1.6;
 }
 
 table {
@@ -157,10 +156,12 @@ h2 {
   font-size: 18px;
   background-color: #fff;
 }
-ul{
+
+ul {
   max-height: 500px;
   overflow-y: auto;
 }
+
 textarea {
   width: calc(100% - 130px);
   max-width: calc(100% - 130px);
@@ -180,7 +181,6 @@ button {
   background-color: #a59f9d;
 }
 
-
 .messages {
   overflow-y: auto;
   height: 400px;
@@ -194,9 +194,10 @@ button {
   margin: 0 auto;
 }
 
-.user-row{
+.user-row {
   width: 150px;
 }
+
 .badge {
   float: right;
   padding: 3px 7px;

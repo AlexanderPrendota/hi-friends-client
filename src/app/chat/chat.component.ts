@@ -44,7 +44,6 @@ export class ChatComponent implements AfterViewChecked {
       .subscribe(
         data => {
           this.chatService.messages.push(data.json());
-          this.scrollToBottom();
           const notification: Notification = {
             idMessage: data.json().id,
             recipient: this.chatService.currentChatPerson.id

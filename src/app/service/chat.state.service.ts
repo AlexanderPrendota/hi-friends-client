@@ -1,7 +1,8 @@
-import {ApplicationRef, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Message, User} from './interfaces';
 import {URL} from '../../environments/environment';
 import {Http} from '@angular/http';
+import {Subject} from 'rxjs/Subject';
 /**
  * Service for main information about current user and his chats
  */
@@ -25,6 +26,7 @@ export class ChatStateService {
     imagePath: '',
     active: false
   };
+  notifyValueChange = new Subject();
 
   constructor(private http: Http) {
   }
@@ -58,12 +60,23 @@ export class ChatStateService {
           if (message.senderId === this.currentChatPerson.id) {
             this.messages.push(message);
           } else {
-            console.log('To notify');
+            this.notifyValueChange.next(message.senderId);
           }
+          this.alarmNotify();
         },
         error => {
           console.log(error);
         }
       )
+  }
+
+  /**
+   * Play audio message after notification
+   */
+  private alarmNotify() {
+    const audio = new Audio();
+    audio.src = 'http://www.pacdv.com/sounds/mechanical_sound_effects/cling_1.wav';
+    audio.load();
+    audio.play();
   }
 }

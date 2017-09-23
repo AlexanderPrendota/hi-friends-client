@@ -1,8 +1,9 @@
-import {ApplicationRef, Component, Input} from '@angular/core';
+import {Component, Input, OnDestroy } from '@angular/core';
 import {Http} from '@angular/http';
 import {URL} from '../../environments/environment';
 import {ChatStateService} from '../service/chat.state.service';
 import {User} from '../service/interfaces';
+import { ISubscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-user',
@@ -10,15 +11,18 @@ import {User} from '../service/interfaces';
   styleUrls: ['./user.component.css']
 })
 
-export class UserComponent {
+export class UserComponent implements OnDestroy {
 
   @Input() user: User;
 
   public isNotify = false;
+  private subscription: ISubscription;
 
   constructor(private http: Http,
-              private chatService: ChatStateService,
-              private ref: ApplicationRef) {
+              private chatService: ChatStateService) {
+    this.subscription = chatService.notifyValueChange.subscribe((userId) => {
+      this.isNotify = userId === this.user.id;
+    })
   }
 
   /**
@@ -32,6 +36,7 @@ export class UserComponent {
         .subscribe(
           data => {
             this.chatService.currentChatId = data.json();
+            this.isNotify = false;
             this.getUserMessage();
           },
           error => {
@@ -50,11 +55,14 @@ export class UserComponent {
       .subscribe(
         data => {
           this.chatService.messages = data.json();
-          this.ref.tick();
         },
         error => {
           console.log(error);
         }
       )
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

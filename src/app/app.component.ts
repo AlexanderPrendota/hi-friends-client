@@ -33,7 +33,6 @@ export class AppComponent implements AfterViewInit {
 
   /**
    * Init google auth
-   * @param element
    */
   public googleInit() {
     gapi.load('auth2', () => {
@@ -97,11 +96,11 @@ export class AppComponent implements AfterViewInit {
           that.chatService.owner = data.json();
           const it = this;
           it.zone.run(() => {
-              that.ws.connect(function () {
-                  it.chatService.initActiveUsers();
-                  it.showLogin = false;
-                  it.ws.send('/app/notify', it.chatService.owner);
-              });
+            that.ws.connect(function () {
+              it.chatService.initActiveUsers();
+              it.showLogin = false;
+              it.ws.send('/app/notify', it.chatService.owner);
+            });
           });
         },
         error => {
