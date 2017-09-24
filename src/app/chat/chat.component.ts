@@ -2,9 +2,6 @@ import {AfterViewChecked, Component, ViewChild} from '@angular/core';
 import {URL} from '../../environments/environment';
 import {Http, RequestOptions, Headers} from '@angular/http';
 import {ChatStateService} from '../service/chat.state.service';
-import {Notification} from '../service/interfaces';
-import {WebSocketsService} from '../service/websockets.service';
-
 
 @Component({
   selector: 'app-chat',
@@ -19,8 +16,7 @@ export class ChatComponent implements AfterViewChecked {
   private KEY = 13;
 
   constructor(private  http: Http,
-              public chatService: ChatStateService,
-              private ws: WebSocketsService) {
+              public chatService: ChatStateService) {
   }
 
   /**
@@ -31,24 +27,20 @@ export class ChatComponent implements AfterViewChecked {
     if (this.chatService.currentChatId === 0 || !message) {
       return;
     }
-    const messageDTO = {
+    const messageDto = {
       senderId: this.chatService.owner.id,
       chatId: this.chatService.currentChatId,
       text: message,
-      timeStamp: Date.now()
+      timeStamp: Date.now(),
+      recipientId: this.chatService.currentChatPerson.id
     };
     const headers = new Headers();
     headers.append('Content-Type', 'application/json;');
     const options = new RequestOptions({headers: headers});
-    this.http.post(URL.save_message, messageDTO, options)
+    this.http.post(URL.save_message, messageDto, options)
       .subscribe(
         data => {
           this.chatService.messages.push(data.json());
-          const notification: Notification = {
-            idMessage: data.json().id,
-            recipient: this.chatService.currentChatPerson.id
-          };
-          this.ws.send('/app/message', notification);
         },
         error => {
           console.log(error);

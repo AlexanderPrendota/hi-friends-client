@@ -13,8 +13,3 @@ export interface User {
   imagePath: string
   active: boolean
 }
-
-export interface Notification {
-  idMessage: number,
-  recipient: number
-}

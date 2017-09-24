@@ -1,7 +1,7 @@
 import {ApplicationRef, Injectable} from '@angular/core';
 import {ChatStateService} from './chat.state.service';
 import {URL} from '../../environments/environment';
-import {User, Notification} from './interfaces';
+import {User, Message} from './interfaces';
 
 /**
  * Web Sockets Configuration
@@ -26,11 +26,11 @@ export class WebSocketsService {
     const that = this;
     const socket = new SockJS(URL.endPointSockets);
     this.stompClient = Stomp.over(socket);
-    this.stompClient.connect({}, function (frame) {
+    this.stompClient.connect({'user': that.chatService.owner.id}, function (frame) {
       console.log('Connected: ' + frame);
 
       /**
-       * First controller for updating current users
+       * Controller for updating current users
        *
        * active = true => new user logged in
        * active = false => user logged out
@@ -51,14 +51,17 @@ export class WebSocketsService {
       });
 
       /**
-       * Second controller for monitoring messages
+       * Controller for private monitoring messages
        */
-      that.stompClient.subscribe('/topic/message', function (responseMessage) {
-        const notification: Notification = JSON.parse(responseMessage.body);
-        if (notification.recipient == that.chatService.owner.id) {
-          that.chatService.updateMessage(notification.idMessage);
-          that.ref.tick();
+      that.stompClient.subscribe('/user/queue/reply', function (messageDto) {
+        const message: Message = JSON.parse(messageDto.body);
+        if (message.senderId === that.chatService.currentChatPerson.id) {
+          that.chatService.messages.push(message);
+        } else {
+          that.chatService.notifyValueChange.next(message.senderId);
         }
+        that.chatService.alarmNotify();
+        that.ref.tick();
       });
       callback();
     }, function (error) {
