@@ -1,6 +1,6 @@
 # Hiclient
 
-Client for Hi-Friends server from(https://github.com/AlexandrPrendota/HiFriends/tree/hiclient).
+Client for Hi-Friends-server from (https://github.com/AlexandrPrendota/HiFriends-server).
 
 ![hi-client](https://user-images.githubusercontent.com/10503748/30776013-22777498-a0a7-11e7-806a-63968dca8535.gif)
 
