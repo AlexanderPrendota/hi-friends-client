@@ -1,5 +1,5 @@
 const HOST = 'localhost';
-const PORT = 8080;
+const PORT = 3131;
 const FULL_HOST = HOST + ':' + PORT;
 
 export const URL = {
